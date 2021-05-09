@@ -51,6 +51,7 @@ flutter:
   #New:
   assets:
     - assets/annie-spratt-5XZ2SyTOyvQ-unsplash.jpg
+    - g-logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
