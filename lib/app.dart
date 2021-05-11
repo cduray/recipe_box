@@ -17,6 +17,11 @@ class RecipesApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: LoginScreen(),
+      // routes: {
+      //   '/': (context) => Home(), // New code
+      //   '/login': (context) => LoginScreen(),
+      // },
     );
+
   }
 }

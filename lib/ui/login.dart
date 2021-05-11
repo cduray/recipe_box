@@ -31,7 +31,35 @@ class LoginScreen extends StatelessWidget {
       );
     }
 
-
+    Widget LoginWidget() {
+      return Scaffold(
+        // We do not use backgroundColor property anymore.
+        // New Container widget wraps our Center widget:
+        body: Container(
+          decoration: _buildBackground(),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Login needed"),
+                _buildText(),
+                SizedBox(height: 50.0),
+                GoogleSignInButton(
+                  onPressed: () async {
+                    //setState(() async {
+                    // do authenication
+                    userCredential = await signInWithGoogle();
+                    userID = userCredential.user.uid;
+                    print("Button onPressed DONE");
+                    // });
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return StreamBuilder<User>(
       stream: FirebaseAuth.instance.authStateChanges(),
@@ -43,40 +71,10 @@ class LoginScreen extends StatelessWidget {
           return Home();
         }
         else {
-          print("===== User  does not exist");
+          print("===== User  does not exists");
           return LoginWidget();
         }
       },
-    );
-  }
-
-  Widget LoginWidget() {
-    return Scaffold(
-      // We do not use backgroundColor property anymore.
-      // New Container widget wraps our Center widget:
-      body: Container(
-        decoration: _buildBackground(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Login needed"),
-              _buildText(),
-              SizedBox(height: 50.0),
-              GoogleSignInButton(
-                onPressed: () async {
-                  //setState(() async {
-                  // do authenication
-                  userCredential = await signInWithGoogle();
-                  userID = userCredential.user.uid;
-                  print("Button onPressed DONE");
-                  // });
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 
